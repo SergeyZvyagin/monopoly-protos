@@ -3,18 +3,13 @@ syntax = "proto3";
 package UsersService
 
 service UsersService {
-	rpc AuthUser(VKAuthRequest) returns (VKAuthRequest);
-	rpc RenameUser(RenameRequest) returns (RenameResponse);
-	rpc VerificateUser(VerificationRequest) returns (VerificationResponse);
+	rpc VKAuth(VKAuthRequest) returns (VKAuthRequest);
+	rpc ChangeNickname(ChangeNicknameRequest) returns (ChangeNicknameResponse);
+    rpc RefreshAccessToken(RefreshAccessTokenRequest) returns (RefreshAccessTokenResponse);
 }
 
 message VKAuthRequest {
 	string vkCode = 1;
-}
-
-message VKAuthResponse {
-	int32 statusCode = 1;
-	optional TokenPair tokens = 2;
 }
 
 message TokenPair {
@@ -22,20 +17,25 @@ message TokenPair {
 	string refreshToken = 2;
 }
 
-message RenameRequest {
-	string accessToken = 1;
-	string newUserName = 2;
+message VKAuthResponse {
+	int32 statusCode = 1;
+	optional TokenPair tokens = 2;
 }
 
-message RenameResponse {
+message ChangeNicknameRequest {
+    uint32 userID = 1;
+	string newName = 2;
+}
+
+message ChangeNicknameResponse {
 	int32 statusCode = 1;
 }
 
-message VerificationRequest {
-	string accessToken = 1;
+message RefreshAccessTokenRequest {
+    string refreshToken = 1;
 }
 
-message VerificationResponse {
-	int32 statusCode = 1;
-	optional int64 userID = 2;
+message RefreshAccessTokenResponse {
+    int32 statusCode = 1;
+	optional TokenPair tokens = 2;
 }
