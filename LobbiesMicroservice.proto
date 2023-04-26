@@ -56,8 +56,8 @@ message CreateRequest {
 
 message CreateResponse {
    int32 statusCode = 1;
-   string lobbyID;
-   optional LobbySettings settings = 2;
+   string lobbyID = 2;
+   optional LobbySettings settings = 3;
 }
 
 
