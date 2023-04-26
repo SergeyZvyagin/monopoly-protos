@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-package UsersService
-
 service UsersService {
     rpc GuestAuth(AuthRequest) returns (AuthResponse);
 	rpc VKAuth(AuthRequest) returns (AuthResponse);
