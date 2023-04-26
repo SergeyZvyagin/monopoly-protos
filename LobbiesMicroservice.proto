@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package LobbiesMicroservice;
+
+option go_package = "./pb";
+
+service LobbiesService {
+    rpc Create(CreateRequest) returns (CreateResponse);
+}
+
+enum VictoryType {
+    SCORE = 1;
+	TURN = 2;
+}
+
+enum LobbyType {
+    PUBLIC = 1;
+	PRIVAT = 2;
+	RATING = 3;
+}
+
+message LobbySettings {
+    string name = 1;
+	LobbyType type = 2;
+    optional string password = 3;
+	uint32 maxPlayers = 4;
+	uint32 turnTime = 5;
+	VictoryType victoryType = 6;
+	int32 victoryValue = 7;	
+}
+
+message Player {
+    uint32 userID = 1;
+	string nickname = 2;
+    uint64 rating = 3;
+    bool isReady = 4;
+}
+
+message ShortCurrentLobbyInfo {
+    string lobbyID = 1;
+    string name = 2;
+    bool isPrivat = 3;
+    uint32 maxPlayers = 4;
+    uint32 playersNow = 5;
+}
+
+message FullCurrentLobbyInfo {
+    ShortCurrentLobbyInfo shortInfo = 1;
+    repeated Player players = 2; 
+}
+
+
+message CreateRequest {
+	uint32 userID = 1;
+}
+
+message CreateResponse {
+   int32 statusCode = 1;
+   string lobbyID;
+   optional LobbySettings settings = 2;
+}
+
+

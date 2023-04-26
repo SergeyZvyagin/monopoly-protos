@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-option go_package = "./main";
+package UsersMicroservice;
+
+option go_package = "./pb";
 
 service UsersService {
     rpc AuthAsGuest(AuthRequest) returns (AuthResponse);
@@ -18,6 +20,7 @@ message TokenPair {
 	string accessToken = 1;
 	string refreshToken = 2;
 }
+
 
 message AuthResponse {
 	int32 statusCode = 1;
