@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+package main;
+
+option go_package = "./src";
+
 service UsersService {
     rpc AuthAsGuest(AuthRequest) returns (AuthResponse);
 	rpc AuthFromVK(AuthRequest) returns (AuthResponse);
