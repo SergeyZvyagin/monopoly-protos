@@ -1,8 +1,8 @@
 syntax = "proto3";
 
 service UsersService {
-    rpc GuestAuth(AuthRequest) returns (AuthResponse);
-	rpc VKAuth(AuthRequest) returns (AuthResponse);
+    rpc AuthAsGuest(AuthRequest) returns (AuthResponse);
+	rpc AuthFromVK(AuthRequest) returns (AuthResponse);
 	rpc ChangeNickname(ChangeNicknameRequest) returns (ChangeNicknameResponse);
     rpc RefreshAccessToken(RefreshAccessTokenRequest) returns (RefreshAccessTokenResponse);
 	rpc GetInfo(GetInfoRequest) returns (GetInfoResponse);
