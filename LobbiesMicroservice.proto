@@ -9,14 +9,14 @@ service LobbiesService {
 }
 
 enum VictoryType {
-    SCORE = 1;
-	TURN = 2;
+    SCORE = 0;
+	TURN = 1;
 }
 
 enum LobbyType {
-    PUBLIC = 1;
-	PRIVAT = 2;
-	RATING = 3;
+    PUBLIC = 0;
+	PRIVAT = 1;
+	RATING = 2;
 }
 
 message LobbySettings {
