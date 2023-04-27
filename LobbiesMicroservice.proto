@@ -11,8 +11,9 @@ service LobbiesService {
 }
 
 enum VictoryType {
-    SCORE = 0;
-	TURN = 1;
+    BOTH = 0;
+    SCORE = 1;
+	TURN = 2;
 }
 
 enum LobbyType {
@@ -25,10 +26,11 @@ message LobbySettings {
     string name = 1;
 	LobbyType type = 2;
     optional string password = 3;
-	uint32 maxPlayers = 4;
+	uint32 maxPlayers = 4;:
 	uint32 turnTime = 5;
 	VictoryType victoryType = 6;
-	int32 victoryValue = 7;	
+	int32 firstVictoryValue = 7;
+	int32 secondVictoryValue = 7;
 }
 
 message Player { 
@@ -46,7 +48,8 @@ message ShortCurrentLobbyInfo {
 
 message FullCurrentLobbyInfo {
     ShortCurrentLobbyInfo shortInfo = 1;
-    repeated Player players = 2; 
+	LobbySetting setting = 2;
+    repeated Player players = 3; 
 }
 
 message CreateRequest {
@@ -55,8 +58,9 @@ message CreateRequest {
 
 message CreateResponse {
    int32 statusCode = 1;
-   string lobbyID = 2;
-   optional LobbySettings settings = 3;
+   uint32 ownerID = 2;
+   string lobbyID = 3;
+   optional LobbySettings settings = 4;
 }
 
 
