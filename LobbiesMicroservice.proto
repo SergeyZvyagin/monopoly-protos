@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package LobbiesMicroservice;
 
+import "UsersMicroservice.proto"
+
 option go_package = "./pb";
 
 service LobbiesService {
@@ -29,11 +31,9 @@ message LobbySettings {
 	int32 victoryValue = 7;	
 }
 
-message Player {
-    uint32 userID = 1;
-	string nickname = 2;
-    uint64 rating = 3;
-    bool isReady = 4;
+message Player { 
+    UsersMicroservice.User userEntity = 1;
+	bool isReady = 2;
 }
 
 message ShortCurrentLobbyInfo {
@@ -48,7 +48,6 @@ message FullCurrentLobbyInfo {
     ShortCurrentLobbyInfo shortInfo = 1;
     repeated Player players = 2; 
 }
-
 
 message CreateRequest {
 	uint32 userID = 1;
