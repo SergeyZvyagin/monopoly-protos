@@ -32,6 +32,7 @@ message User {
 	uint32 rating = 4;
 }
 
+
 message AuthRequest {
 	string authCode = 1;
 }
@@ -43,8 +44,9 @@ message AuthResponse {
 }
 
 message ChangeNicknameRequest {
-    uint32 userID = 1;
-	string newNickname = 2;
+    uint32 requesterID = 1;
+    uint32 userID = 2;
+	string newNickname = 3;
 }
 
 message ChangeNicknameResponse {
@@ -52,7 +54,8 @@ message ChangeNicknameResponse {
 }
 
 message RefreshAccessTokenRequest {
-    string refresfToken = 1;
+    uint32 requesterID = 1
+    string refresfToken = 2;
 }
 
 message RefreshAccessTokenResponse {
@@ -61,7 +64,8 @@ message RefreshAccessTokenResponse {
 }
 
 message GetInfoRequest {
-    uint32 userID = 1;
+    uint32 requesterID = 1;
+    uint32 userID = 2;
 }
 
 message GetInfoResponse {
