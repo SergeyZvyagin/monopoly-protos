@@ -48,7 +48,7 @@ message ShortCurrentLobbyInfo {
 
 message FullCurrentLobbyInfo {
     ShortCurrentLobbyInfo shortInfo = 1;
-	LobbySetting setting = 2;
+	LobbySettings setting = 2;
     repeated Player players = 3; 
 }
 
