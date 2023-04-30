@@ -45,7 +45,6 @@ message AuthResponse {
 
 message ChangeNicknameRequest {
     uint32 requesterID = 1;
-    uint32 userID = 2;
 	string newNickname = 3;
 }
 
@@ -64,7 +63,6 @@ message RefreshAccessTokenResponse {
 }
 
 message GetInfoRequest {
-    uint32 requesterID = 1;
     uint32 userID = 2;
 }
 
