@@ -60,7 +60,7 @@ message RefreshAccessTokenRequest {
 
 message RefreshAccessTokenResponse {
     ExitStatus status = 1;
-	optional TokenPair tokens = 2;
+	optional string accessToken = 2;
 }
 
 message GetInfoRequest {

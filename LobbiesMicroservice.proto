@@ -52,8 +52,9 @@ message FullCurrentLobbyInfo {
     repeated Player players = 3; 
 }
 
+
 message CreateRequest {
-	uint32 userID = 1;
+	uint32 requesterID = 1;
 }
 
 message CreateResponse {
