@@ -26,11 +26,11 @@ message LobbySettings {
     string name = 1;
 	LobbyType type = 2;
     optional string password = 3;
-	uint32 maxPlayers = 4;:
-	uint32 turnTime = 5;
+	uint32 maxPlayers = 4;
+	uint32 timeForTurn = 5;
 	VictoryType victoryType = 6;
-	int32 firstVictoryValue = 7;
-	int32 secondVictoryValue = 7;
+	optional int32 scoreVictoryValue = 7;
+	optional int32 turnVictoryValue = 8;
 }
 
 message Player { 
