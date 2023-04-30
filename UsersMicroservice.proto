@@ -51,7 +51,9 @@ message ChangeNicknameResponse {
 	ExitStatus status = 1;
 }
 
-message RefreshAccessTokenRequest {}
+message RefreshAccessTokenRequest {
+    string refresfToken = 1;
+}
 
 message RefreshAccessTokenResponse {
     ExitStatus status = 1;
