@@ -63,6 +63,7 @@ message RefreshAccessTokenResponse {
 }
 
 message GetInfoRequest {
+    uint32 requesterID = 1;
     uint32 userID = 2;
 }
 

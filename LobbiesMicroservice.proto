@@ -49,19 +49,27 @@ message ShortCurrentLobbyInfo {
 message FullCurrentLobbyInfo {
     ShortCurrentLobbyInfo shortInfo = 1;
 	LobbySettings setting = 2;
-    repeated Player players = 3; 
+    uint32 ownerID = 3;
+    repeated Player players = 4; 
 }
 
 
 message CreateRequest {
 	uint32 requesterID = 1;
+	optional LobbySettings settings = 2;
 }
 
 message CreateResponse {
-   int32 statusCode = 1;
-   uint32 ownerID = 2;
-   string lobbyID = 3;
-   optional LobbySettings settings = 4;
+    int32 statusCode = 1;
+    uint32 ownerID = 2;
+    string lobbyID = 3;
+    optional LobbySettings settings = 4;
 }
+
+message GetListRequest {};
+
+message GetListResponse {
+    
+};
 
 
