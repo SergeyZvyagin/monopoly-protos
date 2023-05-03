@@ -7,7 +7,27 @@ import "UsersMicroservice.proto";
 option go_package = "./pb";
 
 service LobbiesService {
-    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Create(CreateRequest) returns (AboutLobbyResponse);
+	rpc GetList(RequesterOnlyRequest) returns (GetListResponse);
+	rpc Connect(ConnectRequest) returns (AboutLobbyResponse);
+	rpc GetInfo(RequesterOnlyRequest) returns (AboutLobbyResponse);
+    rpc UpdateSettings(UpdateSettingsRequest) returns (UpdateSettingsResponse);
+    rpc ConnectToRanked(RequesterOnlyRequest) returns (AboutLobbyResponse);
+	rpc	Disconnect(RequesterOnlyRequest) returns (StatusOnlyResponse);
+	rpc SwitchReadiness(RequesterOnlyRequest) returns (StatusOnlyResponse);
+	rpc RaisePlayer(RequesterAndTargetRequest) returns (StatusOnlyResponse);
+    rpc KickPlayer(RequesterAndTargetRequest) returns (StatusOnlyResponse);
+    rpc CheckInActive(RequesterOnlyRequest) returns (CheckInActiveResponse);
+	rpc Run(RequesterOnlyRequest) returns (StatusOnlyResponse);
+	rpc Delete(RequesterOnlyRequest) returns (StatusOnlyResponse);
+}
+
+enum ExitStatus {
+    SUCCESS = 0;
+    CODING_ERROR = 1;
+	DECODING_ERROR = 2;
+	FAILED_DEPENDENCY = 3;
+    RESOURCE_NOT_AVAILABLE = 4;
 }
 
 enum VictoryType {
@@ -18,8 +38,8 @@ enum VictoryType {
 
 enum LobbyType {
     PUBLIC = 0;
-	PRIVAT = 1;
-	RATING = 2;
+	PRIVATE = 1;
+	RANKED = 2;
 }
 
 message LobbySettings {
@@ -33,43 +53,89 @@ message LobbySettings {
 	optional int32 turnVictoryValue = 8;
 }
 
-message Player { 
+message Player {
     UsersMicroservice.User userEntity = 1;
 	bool isReady = 2;
 }
 
+message GameConnectionInfo {
+    string address = 1;
+	int32 port = 2;
+}
+
 message ShortCurrentLobbyInfo {
-    string lobbyID = 1;
+    uint32 lobbyID = 1;
     string name = 2;
-    bool isPrivat = 3;
+    bool isPrivate = 3;
     uint32 maxPlayers = 4;
     uint32 playersNow = 5;
 }
 
 message FullCurrentLobbyInfo {
-    ShortCurrentLobbyInfo shortInfo = 1;
-	LobbySettings setting = 2;
-    uint32 ownerID = 3;
-    repeated Player players = 4; 
+    uint32 lobbyID = 1;
+    uint32 ownerID = 2;
+	LobbySettings settings = 3;
+    repeated Player players = 4;
+	bool timerIsActivate = 5;
+	optional GameConnectionInfo connection = 6;
 }
 
 
+// RPCs
+// Shared messages
+message AboutLobbyResponse {
+    ExitStatus status = 1;
+    optional FullCurrentLobbyInfo lobbyInfo = 2; 
+}
+
+message RequesterOnlyRequest {
+    uint32 requesterID = 1;
+}
+
+message RequesterAndTargetRequest {
+    uint32 requesterID = 1;
+	uint32 targetPlayerID = 2;
+}
+
+message StatusOnlyResponse {
+    ExitStatus status = 1;
+}
+
+
+// RPC Create
 message CreateRequest {
 	uint32 requesterID = 1;
 	optional LobbySettings settings = 2;
-}
+} // Response is AboutLobbyResponse
 
-message CreateResponse {
-    int32 statusCode = 1;
-    uint32 ownerID = 2;
-    string lobbyID = 3;
-    optional LobbySettings settings = 4;
-}
+// RPC Connect
+message ConnectRequest {
+    uint32 requesterID = 1;
+	uint32 lobbyID = 2;
+	optional string password =3;
+} // Response is AboutLobbyResponse
 
-message GetListRequest {};
-
+// RPC GetList
 message GetListResponse {
-    
-};
+   ExitStatus status = 1;
+   optional repeated ShortCurrentLobbyInfo lobbies = 2;
+} // Request is RequesterOnlyRequest
+
+
+// RPC UpdateSettings
+message UpdateSettingsRequest {
+    uint32 requesterID = 1;
+    LobbySettings settings = 2;
+}
+
+message UpdateSettingsResponse {
+    ExitStatus status = 1;
+	optional string errMessage = 2;
+}
+
+message CheckInActiveResponse {
+    ExitStatus status = 1;
+    optional GameConnectionInfo connection = 2;
+}
 
 
