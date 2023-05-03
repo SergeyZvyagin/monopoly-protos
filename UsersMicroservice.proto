@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package UsersMicroservice;
 
-option go_package = "./pb";
+option go_package = "./users_pb";
 
 service UsersService {
     rpc AuthAsGuest(AuthRequest) returns (AuthResponse);
