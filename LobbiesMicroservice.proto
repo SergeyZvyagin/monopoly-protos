@@ -4,7 +4,7 @@ package LobbiesMicroservice;
 
 import "UsersMicroservice.proto";
 
-option go_package = "./pb";
+option go_package = "./lobbies_pb";
 
 service LobbiesService {
     rpc Create(CreateRequest) returns (AboutLobbyResponse);
