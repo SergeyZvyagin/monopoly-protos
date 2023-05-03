@@ -54,7 +54,6 @@ message ChangeNicknameResponse {
 
 message RefreshAccessTokenRequest {
     uint32 requesterID = 1;
-    string refresfToken = 2;
 }
 
 message RefreshAccessTokenResponse {
