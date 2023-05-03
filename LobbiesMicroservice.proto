@@ -118,7 +118,7 @@ message ConnectRequest {
 // RPC GetList
 message GetListResponse {
    ExitStatus status = 1;
-   optional repeated ShortCurrentLobbyInfo lobbies = 2;
+   repeated ShortCurrentLobbyInfo lobbies = 2;
 } // Request is RequesterOnlyRequest
 
 
