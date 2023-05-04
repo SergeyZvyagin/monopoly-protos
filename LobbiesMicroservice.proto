@@ -32,9 +32,9 @@ enum ExitStatus {
 }
 
 enum VictoryType {
-    BOTH = 0;
-    SCORE = 1;
-	TURN = 2;
+    SCORE = 0;
+    TURN = 1;
+	BOTH = 2;
 }
 
 enum LobbyType {
