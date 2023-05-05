@@ -51,8 +51,8 @@ message LobbySettings {
 	uint32 maxPlayers = 4;
 	uint32 timeForTurn = 5;
 	VictoryType victoryType = 6;
-	optional int32 scoreVictoryValue = 7;
-	optional int32 turnVictoryValue = 8;
+	uint32 scoreVictoryValue = 7;
+	uint32 turnVictoryValue = 8;
 }
 
 message Player {
@@ -62,7 +62,7 @@ message Player {
 
 message GameConnectionInfo {
     string address = 1;
-	int32 port = 2;
+	uint32 port = 2;
 }
 
 message ShortCurrentLobbyInfo {
