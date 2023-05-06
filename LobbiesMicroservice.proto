@@ -30,6 +30,7 @@ enum ExitStatus {
     RESOURCE_NOT_AVAILABLE = 4;
 	DB_LEVEL_ERROR = 5;
 	BAD_VALUE = 6;
+	FORBIDDEN = 7;
 }
 
 enum VictoryType {
