@@ -7,11 +7,11 @@ import "UsersMicroservice.proto";
 option go_package = "./lobbies_pb";
 
 service LobbiesService {
-    rpc Create(CreateRequest) returns (AboutLobbyResponse);
+    rpc Create(SetSettingsRequest) returns (AboutLobbyResponse);
 	rpc GetList(RequesterOnlyRequest) returns (GetListResponse);
 	rpc Connect(ConnectRequest) returns (AboutLobbyResponse);
 	rpc GetInfo(RequesterOnlyRequest) returns (AboutLobbyResponse);
-    rpc UpdateSettings(UpdateSettingsRequest) returns (UpdateSettingsResponse);
+    rpc UpdateSettings(SetSettingsRequest) returns (StatusOnlyResponse);
     rpc ConnectToRanked(RequesterOnlyRequest) returns (AboutLobbyResponse);
 	rpc	Disconnect(RequesterOnlyRequest) returns (StatusOnlyResponse);
 	rpc SwitchReadiness(RequesterOnlyRequest) returns (StatusOnlyResponse);
@@ -106,7 +106,7 @@ message StatusOnlyResponse {
 
 
 // RPC Create
-message CreateRequest {
+message SetSettingsRequest {
 	uint32 requesterID = 1;
 	optional LobbySettings settings = 2;
 } // Response is AboutLobbyResponse
@@ -123,18 +123,6 @@ message GetListResponse {
    ExitStatus status = 1;
    repeated ShortCurrentLobbyInfo lobbies = 2;
 } // Request is RequesterOnlyRequest
-
-
-// RPC UpdateSettings
-message UpdateSettingsRequest {
-    uint32 requesterID = 1;
-    LobbySettings settings = 2;
-}
-
-message UpdateSettingsResponse {
-    ExitStatus status = 1;
-	optional string errMessage = 2;
-}
 
 message CheckInActiveResponse {
     ExitStatus status = 1;
