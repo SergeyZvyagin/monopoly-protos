@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package GameMicroservice;
+
+import "LobbiesMicroservice.proto";
+
+option go_package = "./game_pb";
+
+service GameMicroservice {
+    rpc Run(LobbiesMicroservice.FullCurrentLobbyInfo) returns (LobbiesMicroservice.GameConnectionInfo);
+}
+

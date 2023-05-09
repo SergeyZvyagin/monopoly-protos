@@ -20,6 +20,9 @@ service LobbiesService {
     rpc CheckInActive(RequesterOnlyRequest) returns (CheckInActiveResponse);
 	rpc Run(RequesterOnlyRequest) returns (StatusOnlyResponse);
 	rpc Delete(RequesterOnlyRequest) returns (StatusOnlyResponse);
+
+	rpc RegisterPlayerConnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
+	rpc RegisterPlayerDisconnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
 }
 
 enum ExitStatus {
