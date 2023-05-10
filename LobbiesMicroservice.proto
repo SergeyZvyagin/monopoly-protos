@@ -23,6 +23,7 @@ service LobbiesService {
 
 	rpc RegisterPlayerConnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
 	rpc RegisterPlayerDisconnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
+	rpc RegisterGameResults(RegisterResultsRequest) returns (StatusOnlyResponse);
 }
 
 enum ExitStatus {
@@ -57,6 +58,11 @@ message LobbySettings {
 	VictoryType victoryType = 6;
 	uint32 scoreVictoryValue = 7;
 	uint32 turnVictoryValue = 8;
+}
+
+message PlayerResult {
+    uint32 userID = 1;
+	uint32 placement = 2;
 }
 
 message Player {
@@ -132,4 +138,7 @@ message CheckInActiveResponse {
     optional GameConnectionInfo connection = 2;
 }
 
+message RegisterResultsRequest {
+    repeated PlayerResult result = 1;
+}
 
