@@ -7,6 +7,10 @@ import "LobbiesMicroservice.proto";
 option go_package = "./game_pb";
 
 service GameMicroservice {
-    rpc Run(LobbiesMicroservice.FullCurrentLobbyInfo) returns (LobbiesMicroservice.GameConnectionInfo);
+    rpc Initialization(SessionParameters) returns (LobbiesMicroservice.GameConnectionInfo);
 }
 
+message SessionParameters {
+	LobbiesMicroservice.LobbySettings settings = 1;
+	repeated LobbiesMicroservice.Player players = 2;
+}

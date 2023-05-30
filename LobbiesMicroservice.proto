@@ -8,71 +8,71 @@ option go_package = "./lobbies_pb";
 
 service LobbiesService {
     rpc Create(SetSettingsRequest) returns (AboutLobbyResponse);
-	rpc GetList(RequesterOnlyRequest) returns (GetListResponse);
-	rpc Connect(ConnectRequest) returns (AboutLobbyResponse);
-	rpc GetInfo(RequesterOnlyRequest) returns (AboutLobbyResponse);
+    rpc GetList(RequesterOnlyRequest) returns (GetListResponse);
+    rpc Connect(ConnectRequest) returns (AboutLobbyResponse);
+    rpc GetInfo(RequesterOnlyRequest) returns (AboutLobbyResponse);
     rpc UpdateSettings(SetSettingsRequest) returns (StatusOnlyResponse);
     rpc ConnectToRanked(RequesterOnlyRequest) returns (AboutLobbyResponse);
-	rpc	Disconnect(RequesterOnlyRequest) returns (StatusOnlyResponse);
-	rpc SwitchReadiness(RequesterOnlyRequest) returns (StatusOnlyResponse);
-	rpc RaisePlayer(RequesterAndTargetRequest) returns (StatusOnlyResponse);
+    rpc Disconnect(RequesterOnlyRequest) returns (StatusOnlyResponse);
+    rpc SwitchReadiness(RequesterOnlyRequest) returns (StatusOnlyResponse);
+    rpc RaisePlayer(RequesterAndTargetRequest) returns (StatusOnlyResponse);
     rpc KickPlayer(RequesterAndTargetRequest) returns (StatusOnlyResponse);
     rpc CheckInActive(RequesterOnlyRequest) returns (CheckInActiveResponse);
-	rpc Run(RequesterOnlyRequest) returns (StatusOnlyResponse);
-	rpc Delete(RequesterOnlyRequest) returns (StatusOnlyResponse);
+    rpc Run(RequesterOnlyRequest) returns (StatusOnlyResponse);
+    rpc Delete(RequesterOnlyRequest) returns (StatusOnlyResponse);
 
-	rpc RegisterPlayerConnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
-	rpc RegisterPlayerDisconnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
-	rpc RegisterGameResults(RegisterResultsRequest) returns (StatusOnlyResponse);
+    rpc RegisterPlayerConnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
+    rpc RegisterPlayerDisconnection(RequesterOnlyRequest) returns (StatusOnlyResponse);
+    rpc RegisterGameResults(RegisterResultsRequest) returns (StatusOnlyResponse);
 }
 
 enum ExitStatus {
     SUCCESS = 0;
     CODING_ERROR = 1;
-	DECODING_ERROR = 2;
-	FAILED_DEPENDENCY = 3;
+    DECODING_ERROR = 2;
+    FAILED_DEPENDENCY = 3;
     RESOURCE_NOT_AVAILABLE = 4;
-	DB_LEVEL_ERROR = 5;
-	BAD_VALUE = 6;
-	FORBIDDEN = 7;
+    DB_LEVEL_ERROR = 5;
+    BAD_VALUE = 6;
+    FORBIDDEN = 7;
 }
 
 enum VictoryType {
     SCORE = 0;
     TURN = 1;
-	BOTH = 2;
+    BOTH = 2;
 }
 
 enum LobbyType {
     PUBLIC = 0;
-	PRIVATE = 1;
-	RANKED = 2;
+    PRIVATE = 1;
+    RANKED = 2;
 }
 
 message LobbySettings {
     string name = 1;
-	LobbyType type = 2;
+    LobbyType type = 2;
     optional string password = 3;
-	uint32 maxPlayers = 4;
-	uint32 timeForTurn = 5;
-	VictoryType victoryType = 6;
-	uint32 scoreVictoryValue = 7;
-	uint32 turnVictoryValue = 8;
+    uint32 maxPlayers = 4;
+    uint32 timeForTurn = 5;
+    VictoryType victoryType = 6;
+    uint32 scoreVictoryValue = 7;
+    uint32 turnVictoryValue = 8;
 }
 
 message PlayerResult {
     uint32 userID = 1;
-	uint32 placement = 2;
+    uint32 placement = 2;
 }
 
 message Player {
     UsersMicroservice.User userEntity = 1;
-	bool isReady = 2;
+    bool isReady = 2;
 }
 
 message GameConnectionInfo {
     string address = 1;
-	uint32 port = 2;
+    uint32 port = 2;
 }
 
 message ShortCurrentLobbyInfo {
@@ -86,10 +86,10 @@ message ShortCurrentLobbyInfo {
 message FullCurrentLobbyInfo {
     uint32 lobbyID = 1;
     uint32 ownerID = 2;
-	LobbySettings settings = 3;
+    LobbySettings settings = 3;
     repeated Player players = 4;
-	bool timerIsActivate = 5;
-	optional GameConnectionInfo connection = 6;
+    bool timerIsActivate = 5;
+    optional GameConnectionInfo connection = 6;
 }
 
 
@@ -106,7 +106,7 @@ message RequesterOnlyRequest {
 
 message RequesterAndTargetRequest {
     uint32 requesterID = 1;
-	uint32 targetPlayerID = 2;
+    uint32 targetPlayerID = 2;
 }
 
 message StatusOnlyResponse {
@@ -116,15 +116,15 @@ message StatusOnlyResponse {
 
 // RPC Create
 message SetSettingsRequest {
-	uint32 requesterID = 1;
-	optional LobbySettings settings = 2;
+    uint32 requesterID = 1;
+    optional LobbySettings settings = 2;
 } // Response is AboutLobbyResponse
 
 // RPC Connect
 message ConnectRequest {
     uint32 requesterID = 1;
-	uint32 lobbyID = 2;
-	optional string password =3;
+    uint32 lobbyID = 2;
+    optional string password =3;
 } // Response is AboutLobbyResponse
 
 // RPC GetList

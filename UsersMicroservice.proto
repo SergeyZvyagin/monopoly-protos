@@ -5,11 +5,12 @@ package UsersMicroservice;
 option go_package = "./users_pb";
 
 service UsersService {
-    rpc AuthAsGuest(AuthRequest) returns (AuthResponse);
-	rpc AuthFromVK(AuthRequest) returns (AuthResponse);
-	rpc ChangeNickname(ChangeNicknameRequest) returns (ChangeNicknameResponse);
+    rpc AuthFromVK(AuthRequest) returns (AuthResponse);
+    rpc AuthFromGoogle(AuthRequest) returns (AuthResponse);
+    rpc AuthAsGuest(AuthRequest) returns (AuthResponse);		
     rpc RefreshAccessToken(RefreshAccessTokenRequest) returns (RefreshAccessTokenResponse);
 	rpc GetInfo(GetInfoRequest) returns (GetInfoResponse);
+    rpc ChangeNickname(ChangeNicknameRequest) returns (ChangeNicknameResponse);
 }
 
 enum ExitStatus {
